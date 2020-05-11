@@ -1,0 +1,31 @@
+# PostgreSQL. Versions 9.1 and up are supported.
+#
+# Install the pg driver:
+#   gem install pg
+#
+# Configure Using Gemfile
+# gem 'pg'
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: razer_app_development
+
+test:
+  <<: *default
+  database: razer_app_test
+
+
+production:
+  <<: *default
+  database: callback_app_production
+  username: callback_app
+  password: <%= ENV['RAZER_APP_DATABASE_PASSWORD'] %>
