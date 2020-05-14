@@ -1,0 +1,69 @@
+<div class="main-header navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+	    <%= link_to "TesLah!", root_path, id: "logo" %>
+		<nav>
+		  <ul class="nav navbar-nav navbar-right">
+		    <li><%= link_to "Home", root_path %></li>
+			<li><%= link_to "Help", help_path %></li>
+			<% if user_signed_in? %>
+			  <li><%#= link_to "Users", users_path %></li>
+			  <li class="dropdown">
+			    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+				  Account <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				  <li><%#= link_to "Profile", current_user %></li>
+				  <li><%#= link_to "Settings", edit_user_path(current_user) %></li>
+				  <li class="divider"></li>
+				  <li>
+				    <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+				  </li>
+				</ul>
+			  </li>
+			<% else %>
+			  <li><%= link_to "Log in", new_user_session_path %></li>
+			<% end %>
+		  </ul>
+		</nav>
+	  </div>
+  <!--<nav class="navbar navbar-static-top">
+    <a href="#" class="only-small sidebar-toggle" data-toggle="push-menu" role="button">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+    <ul class="nav navbar">
+      <li class='dropdown'>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <%#= image_tag gravatar_url(current_user.email, 30), alt: "", height: 30, class: 'avatar'%>
+          <%#= current_user.name %>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <%#= link_to account_settings_path do %>
+              <span>Account</span>
+            <%# end %>
+          </li>
+
+          <li>
+            <%#= link_to static_pages_help_path do %>
+              <span>Help</span>
+            <%# end %>
+          </li>
+          <hr>
+          <li>
+            <%#= link_to destroy_user_session_path, :method => :delete, data: { confirm: "Are you sure you want to logout?"} do %>
+              <span>Logout</span>
+            <%# end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="only-large navbar-left">
+      <%#= render 'layouts/navigation/header/additional_buttons' %>
+    </div>
+  </nav>-->
+</div>

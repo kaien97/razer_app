@@ -1,0 +1,83 @@
+/*
+###############################################################################
+                                Dashboard
+###############################################################################
+*/
+.dashboard {
+  .info-box {
+    height: 190px;
+    text-align: center;
+
+    .icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      text-align: center;
+      color: $accent-blue;
+      background: $accent-light-blue;
+      margin: 25px auto;
+
+      i {
+        line-height: 45px;
+        font-size: $font-icon-normal;
+      }
+    }
+
+    .statistic-label {
+      color: $dark-grey;
+      font-size: $font-size-normal;
+    }
+
+    &.selectable {
+      color: #000;
+      &:hover {
+        box-shadow: 0 0 10px 1px $light-primary-blue;
+      }
+    }
+
+    &.monthly-call-usage {
+      .call-data {
+        font-size: 30px;
+      }
+      hr {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .activity-box {
+    height: 270px;
+  }
+
+  // @media (max-width: 992px) {
+  //   .activity-box {
+  //     height: auto;
+  //   }
+  // }
+
+  .chat-app-data {
+    text-align: left;
+    margin-bottom: 0;
+    td {
+      border: none;
+    }
+    .app-icon {
+      height: 20px;
+      width: 20px;
+      &.chat-icon {
+        margin: 0 8px;
+        border-radius: 5px;
+        padding: 1px;
+        display: inline-block;
+        float: left;
+      }
+      &.default {
+        color: $accent-blue;
+        background: $accent-light-blue;
+        text-align: center;
+        font-size: 11px;
+        line-height: 20px;
+      }
+    }
+  }
+}

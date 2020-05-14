@@ -1,0 +1,593 @@
+/*
+###############################################################################
+                              Buttons
+###############################################################################
+*/
+// .btn-primary {
+//   background-color: $primary-blue;
+//   border-radius: $box-radius;
+//   height: $button-height;
+//   line-height: $button-height;
+//   font-size: $font-size-normal;
+//   text-align: center;
+//   color: #fff;
+// }
+
+
+.btn-primary {
+  @include button-variant(#fff, $primary-blue, darken($primary-blue, 7.5%));
+  border-radius: $box-radius;
+  &.large {
+    box-shadow: 1px 3px 10px 0px #2E56FC70;
+    line-height: $button-large-height;
+    height: $button-large-height;
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+.btn-primary-green {
+  @include button-variant(#fff, $razer-green-dark, darken($razer-green-dark, 7.5%));
+  border-radius: $box-radius;
+  &.large {
+    box-shadow: 1px 3px 10px 0px #2E56FC70;
+    line-height: $button-large-height;
+    height: $button-large-height;
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+.btn-default {
+  @include button-variant(#fff, $grey, darken($grey, 7.5%));
+  color: #000000 !important;
+  border-radius: $box-radius;
+  &.large {
+    box-shadow: 1px 3px 10px 0px #D6D6D670;
+    line-height: $button-large-height;
+    height: $button-large-height;
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+.btn-danger {
+  @include button-variant(#fff, $pastel-red, darken($pastel-red, 7.5%));
+  color: #ffffff !important;
+  border-radius: $box-radius;
+  &.large {
+    box-shadow: 1px 3px 10px 0px #F36A8670;
+    line-height: $button-large-height;
+    height: $button-large-height;
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+.btn-accent-blue {
+  @include button-variant(#fff, $accent-blue, darken($accent-blue, 7.5%));
+  color: #ffffff !important;
+  border-radius: $box-radius;
+  &.large {
+    box-shadow: 1px 3px 10px 0px #8c9eff70;
+    line-height: $button-large-height;
+    height: $button-large-height;
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+.btn-red {
+  @include button-variant(#fff, $red-btn, darken($red-btn, 7.5%));
+  color: #ffffff !important;
+  border-radius: $box-radius;
+  &.large {
+    box-shadow: 1px 3px 10px 0px #8c9eff70;
+    line-height: $button-large-height;
+    height: $button-large-height;
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+.btn-green {
+  @include button-variant(#fff, darken($razer-green-dark, 7.5%), darken($razer-green-dark, 15%));
+  color: #ffffff !important;
+  border-radius: $box-radius;
+  &.large {
+    box-shadow: 1px 3px 10px 0px #8c9eff70;
+    line-height: $button-large-height;
+    height: $button-large-height;
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+.btn-custom {
+  border-radius: $box-radius;
+  color: #ffffff;
+  &:hover { opacity: 0.8; }
+}
+
+.btn-footer {
+  margin-bottom: 15px;
+  margin-top: 40px;
+}
+
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: normal;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.label-business {
+  background-color: #3949ab !important;
+}
+
+.label-primary {
+  background-color: #2E56FC !important;
+}
+
+
+.label-container {
+  position: relative;
+  .label {
+    position: absolute;
+    padding: 4px;
+    margin-left: 5px;
+    font-size: 10px;
+    font-weight: normal;
+  }
+}
+
+
+/*
+###############################################################################
+                              Fancy Box
+###############################################################################
+*/
+
+// Popup Info Box
+#fancybox-wrap{
+  width: 400px;
+  height: 400px;
+}
+
+#fancybox-content{
+  width: 400px;
+  height: 400px;
+}
+
+/* fix fancybox issue */
+.fancybox-is-closing{
+  display: none;
+}
+
+
+/*
+###############################################################################
+                            Country Code
+###############################################################################
+*/
+
+.intl-tel-input {
+  display: table-cell;
+}
+.default-country-wrapper .intl-tel-input {
+  .iti-flag {
+    background-color: transparent;
+  }
+
+  .flag-container {
+    display: inline-block;
+    border-color: #d2d6de;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    height: 40px;
+
+    .selected-flag {
+      width: inherit;
+
+      .iti-arrow {
+        display: inline;
+        right: 3px;
+      }
+
+      .selected-name {
+        display: inline-block;
+        position: relative;
+        left: 30px;
+        top: 7px;
+        white-space: nowrap;
+        margin-right: 45px;
+        max-width: 130px;
+        overflow: hidden;
+      }
+    }
+  }
+}
+.intl-tel-input .country-list {
+  overflow-y: auto !important;
+}
+.input-group .intl-tel-input .form-control {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0;
+}
+
+.intl-tel-input .country-list {
+  width: 180px !important;
+  white-space: normal !important;
+}
+
+.intl-tel-input .dropdown {
+  width: 180px !important;
+  white-space: normal !important;
+}
+
+@media only screen and (max-width: $MEDIUM) {
+  .intl-tel-input .country-list .country {
+    width: 100% !important;
+  }
+
+  .intl-tel-input.iti-container {
+    z-index: 1000001 !important;
+  }
+}
+#callForm .intl-tel-input .country-list,
+.bottom-popup-box .intl-tel-input .country-list {
+  bottom: 100%;
+  margin-bottom: -1px;
+  .dropdown {
+  }
+  .dropup {
+  }
+}
+
+// Country code scrollbar
+
+/* Turn on custom 8px wide scrollbar */
+.intl-tel-input .country-list::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(0,0,0,0);
+  -webkit-border-radius: 100px;
+}
+
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+.intl-tel-input .country-list::-webkit-scrollbar:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+.intl-tel-input .country-list::-webkit-scrollbar-thumb:vertical {
+  background: rgba(0,0,0,0.5);
+  -webkit-border-radius: 100px;
+}
+.intl-tel-input .country-list::-webkit-scrollbar-thumb:vertical:active {
+  background: rgba(0,0,0,0.61);
+  -webkit-border-radius: 100px;
+}
+
+
+/*
+###############################################################################
+                                    TABLES
+###############################################################################
+*/
+
+ .responsive-table {
+  @media (max-width: 374px) {
+    overflow-x: scroll;
+    max-width: 240px;
+    display: table-cell;
+  }
+
+  @media (min-width: 375px) and (max-width: 410px) {
+    overflow-x: scroll;
+    max-width: 290px;
+    display: table-cell;
+  }
+}
+
+.table {
+  font-family: "rubik";
+}
+
+.table {
+  th {
+    font-weight: bold;
+    color: #404040;
+  }
+  tbody {
+    font-weight: 300;
+  }
+
+  td.no-border{
+    border: none;
+  }
+}
+
+
+
+/*
+###############################################################################
+                              Label & Tags
+###############################################################################
+*/
+
+label {
+  font-weight: normal;
+}
+
+
+.red-tag {
+  background-color: $pastel-red;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  // padding: 3px 9px;
+  font-size: 12px !important;
+  height: 19px !important;
+  line-height: 16px !important;
+  opacity: 0.9 !important;
+}
+
+.premium-tag {
+  background-color: #00bfa5;
+  color: #ffffff;
+  &:hover {
+    color: #ffffff;
+    background-color: #00897b;
+  }
+}
+
+.beta-tag {
+  background-color: #d81b60;
+  color: #ffffff;
+  padding: .2em .5em .3em;
+  &:hover {
+    color: #ffffff;
+    background-color: #d81b60;
+  }
+}
+
+.agency-tag {
+  background-color: #77dd77;
+  color: #ffffff;
+  &:hover {
+    color: #ffffff;
+    background-color: #50d350;
+  }
+}
+
+.user-tag {
+  background-color: #eeeeee;
+  color: #000000;
+  &:hover {
+    color: #000000;
+    background-color: #C5C6CB;
+  }
+}
+
+.small-label {
+  font-family: "rubik";
+  font-size: 13px;
+  color: #bdbdbd;
+  font-weight: normal;
+}
+
+.small-tag {
+  background: $medium-grey;
+  padding: 3px;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 11px;
+  margin-right: 2px;
+}
+
+.small-tag-empty {
+  border: 1px solid $dark-grey;
+  padding: 3px;
+  color: $dark-grey;
+  border-radius: 3px;
+  font-size: 11px;
+  margin-right: 2px;
+}
+
+// Help Symbol
+.user-help{
+  color: #458ce2;
+  cursor: pointer;
+  &:hover{
+    color: #346aa8;
+  }
+}
+
+/*
+###############################################################################
+                              Custom Tabs
+###############################################################################
+*/
+
+
+
+hr.large {
+  margin-top: 0;
+  border-top: 2px solid #eeeeee;
+}
+
+.custom-tabs {
+  font-size: $font-size-normal;
+  padding-bottom: 15px;
+  // width: 130px;
+  padding: 0 30px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  height: 45px;
+  line-height: 25px;
+  color: #000;
+
+  &.active {
+    border-bottom: 2px solid $primary-blue;
+  }
+  &.active, &:hover {
+    color: $primary-blue
+  }
+  .red-tag {
+    position: absolute;
+    right: -20px;
+    top: -10px;
+  }
+  .tabs-wrapper {
+    width: fit-content;
+    width: -moz-fit-content;
+    padding: 0;
+    margin: auto;
+  }
+}
+
+.custom-tabs-disabled {
+  font-size: $font-size-normal;
+  padding-bottom: 15px;
+  padding: 0 30px;
+  cursor: not-allowed;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  height: 45px;
+  line-height: 25px;
+  color: $grey;
+
+  .tabs-wrapper {
+    width: fit-content;
+    width: -moz-fit-content;
+    padding: 0;
+    margin: auto;
+  }
+}
+
+/*
+###############################################################################
+                                    Box
+###############################################################################
+*/
+
+.box.box-solid > .box-header .btn:hover,
+.box.box-solid > .box-header a:hover {
+  background: none;
+}
+
+.box {
+  border: none;
+  overflow-y: auto;
+  border-radius: $box-radius;
+
+  .box-body.settings {
+    padding: 10px 50px;
+  }
+
+  .header-button {
+    margin: 15px 40px 0 0;
+  }
+}
+
+.box-title {
+  font-family: "rubik";
+  padding: 20px 10px 20px 40px;
+  font-weight: bold;
+  font-size: 20;
+}
+
+/*
+###############################################################################
+                            Pagnination
+###############################################################################
+*/
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  background-color: $primary-blue;
+  border-color: $primary-blue;
+}
+
+
+/*
+###############################################################################
+                                FLASH MESSAGES
+###############################################################################
+*/
+
+.alert {
+  padding: 15px 15px 15px 0 !important;
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  width: 30%;
+  z-index: 999999999999999;
+
+  .value {
+    margin-left: 20px;
+  }
+
+  .close {
+    position: relative;
+    bottom: 3px;
+    color: #fff !important;
+    opacity: 1 !important;
+  }
+
+  @media (max-width: 320px) {
+    width: 80%;
+  }
+
+  @media (min-width: 321px) and (max-width: 576px) {
+    width: 70%;
+  }
+
+  @media (min-width: $MEDIUM) and (max-width: 1023px) {
+    width: 50%;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1219px) {
+    width: 40%
+  }
+
+  @media (min-width: 1920px) {
+    width: 25%;
+  }
+}
+
+// Modal Flash Messages
+.modal-flash {
+  display: none;
+  padding: 3px;
+
+  // Success message in modal
+  &.success {
+    background-color: #dff0d8;
+  }
+
+  // Failed message in modal
+  &.fail {
+    background-color: #f2dede;
+  }
+}
+
+/*
+###############################################################################
+                            Form & Dropdown Elements
+###############################################################################
+*/
+
+.new-dropdown {
+  color: darken($grey, 15%);
+}

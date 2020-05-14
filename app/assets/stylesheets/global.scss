@@ -1,0 +1,571 @@
+/*
+###############################################################################
+                                  FONTS
+###############################################################################
+*/
+
+@font-face {
+  font-family: "perpetua";
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+html, body, div, span,
+a, p, h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "perpetua";
+}
+
+.font-distinct {
+  font-weight: 1000;
+}
+
+/*
+###############################################################################
+                                  COLOR
+###############################################################################
+*/
+.color-inherit {
+  color: inherit;
+}
+
+.grey {
+  color: $grey;
+}
+
+.light-grey {
+  color: $light-grey !important;
+}
+
+.red { /* Used to denote compulsory fields */
+  color: #f00;
+}
+
+.white {
+  color: #fff !important;
+}
+
+.text-blue {
+  color: $primary-blue !important;
+}
+
+.text-success {
+  color: $pastel-green-dark !important;
+}
+
+.text-danger {
+  color: $pastel-red !important;
+}
+
+.text-warning {
+  color: #ffca28 !important;
+}
+
+.text-dark {
+  color: #444 !important;
+}
+
+.light-link {
+  color: #03a9f4;
+}
+
+.light-link:hover {
+  color: #0277bd;
+}
+
+.light-link:active {
+  color: #01579b;
+}
+
+.background-accent-blue {
+  background-color: $accent-blue;
+}
+
+.box-shadow {
+  box-shadow: 1px 3px 10px 3px #D6D6D670;
+}
+
+.shadow {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1)
+}
+
+::placeholder {
+  color: #bdbdbd;
+}
+
+
+/*
+###############################################################################
+                                  GENERAL
+###############################################################################
+*/
+.select-container {
+  position: relative;
+  select {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    background: #FFFFFF;
+    padding: 0 10px;
+    cursor: pointer;
+  }
+  select::-ms-expand {
+    display: none;
+  }
+  i {
+    position: absolute;
+    bottom : 14px;
+    right: 8px;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+#logo {
+	float: left;
+	margin-right: 10px;
+	font-size: 1.7em;
+	color: $razer-green;
+	letter-spacing: -1px;
+	padding-top: 9px;
+	font-weight: bold;
+	&:hover {
+		color: $razer-green-dark;
+		text-decoration: none;
+	}
+}
+
+
+.long-text-wrap {
+  max-width: 250px;
+  overflow: hidden;
+  max-height: 80px;
+  word-wrap:break-word;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.screen-center{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+
+  @media (max-width: 320px) {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  @media (min-width: 321px) and (max-width: 375px) {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+.absolute-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.center {
+  align: center;
+  margin: auto;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.vertical-center {
+  vertical-align: middle;
+}
+
+.text-center {
+  width: 100%;
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.full-height {
+  height: 100% !important;
+}
+
+.clear-float {
+  clear: both;
+}
+
+.inline {
+  display: inline-block;
+  padding-left: 0px;
+}
+
+.hidden {
+  display: none;
+}
+
+// Pointer for clickable
+.pointer {
+  cursor: pointer;
+}
+
+// Pointer for draggable/ sortable
+.move {
+  cursor: grab;
+}
+
+// Loading cursor
+.wait{
+  cursor: wait
+}
+
+// Short URL
+.url_truncate {
+  cursor: pointer;
+  width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: underline;
+}
+
+.text_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Placeholder for country-number
+.country-number::placeholder {
+  color: #dddddd;
+}
+
+// Pointer for Disabled
+.disabled {
+  cursor: not-allowed;
+  color: $grey !important;
+  background: #ffffff !important;
+}
+
+.opacity-half {
+  opacity: 0.5;
+}
+
+/*
+###############################################################################
+                                Margins & Paddings
+###############################################################################
+*/
+
+.element-margin {
+  margin-top: 10px;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0 !important;
+}
+
+.no-top-margin {
+  margin-top: 0 !important;
+}
+
+.no-right-margin {
+  margin-right: 0 !important;
+}
+
+.margin-10 {
+  margin: 10px !important;
+}
+
+.margin-bottom--10 {
+  margin-bottom: -10px !important;
+}
+
+.margin-bottom-5 {
+  margin-bottom: 5px;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px !important;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px !important;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px !important;
+}
+
+.margin-top-5 {
+  margin-top: 5px !important;
+}
+
+.margin-top-7 {
+  margin-top: 7px !important;
+}
+
+.margin-top-10 {
+  margin-top: 10px !important;
+}
+
+.margin-top-15 {
+  margin-top: 15px !important;
+}
+
+.margin-top-20 {
+  margin-top: 20px !important;
+}
+
+.margin-top-30 {
+  margin-top: 30px !important;
+}
+
+.margin-top-49 {
+  margin-top: 49px !important;
+}
+
+.margin-top-55 {
+  margin-top: 55px !important;
+}
+
+.margin-right-5 {
+  margin-right: 5px !important;
+}
+
+.margin-right-10 {
+  margin-right: 10px !important;
+}
+
+.margin-right-40 {
+  margin-right: 40px !important;
+}
+
+.margin-right-50 {
+  margin-right: 50px !important;
+}
+
+.margin-left-5 {
+  margin-left: 4px !important;
+}
+
+.margin-left-10 {
+  margin-left: 10px !important;
+}
+
+.margin-left-20 {
+  margin-left: 20px !important;
+}
+
+.margin-left-40 {
+  margin-left: 40px !important;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0 !important;
+}
+.no-top-margin {
+  margin-top: 0 !important;
+}
+
+.padding-10 {
+  padding: 10px !important;
+}
+
+.box-padding {
+  padding: 20px !important;
+}
+
+.padding-left-5 {
+  padding: 0 0 0 5px !important;
+}
+
+.padding-top-5 {
+  padding-top: 5px !important;
+}
+
+.padding-top-10 {
+  padding-top: 10px !important;
+}
+
+.padding-top-20 {
+  padding-top: 20px !important;
+}
+
+.padding-left-10 {
+  padding-left: 10px !important;
+}
+
+.padding-left-20 {
+  padding-left: 20px !important;
+}
+
+.padding-right-0 {
+  padding-right: 0px !important;
+}
+
+/*
+ --- FOR SMALLER DEVICES ---
+*/
+
+ /*
+ ###############################################################################
+                                 INPUT FIELDS
+ ###############################################################################
+ */
+
+ .input-with-icon {
+   position: relative;
+
+   i {
+     position: absolute;
+     color: #bdbdbd;
+     right: 15px;
+     top: 12px;
+     transition: .3s;
+   }
+
+   label {
+     text-transform: uppercase;
+     font-size: 12px;
+   }
+ }
+
+.input-height {
+  height: 42px;
+}
+
+ .form-control {
+   border: 1px solid #aaa;
+   border-radius: 4px;
+   margin-bottom: 20px;
+   // padding: 20px;
+   height: 42px;
+ }
+
+ .form-control:focus {
+   border-color: rgba(24, 115, 226, 0.8);
+ }
+
+ .form-control:focus + i {
+   color: $primary-blue;
+ }
+
+
+ /*
+###############################################################################
+                                HYPERLINKS
+###############################################################################
+*/
+a {
+  // color: #42a5f5;
+  color: $primary-blue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: lighten($primary-blue, 7.5%);
+}
+
+a:active {
+  color: lighten($primary-blue, 7.5%);
+}
+
+/*
+###############################################################################
+                               BORDERS AND LINES
+###############################################################################
+*/
+
+.light-grey-border {
+  border: 1px solid $very-light-grey !important;
+  border-top: 1px solid $very-light-grey !important;
+}
+
+/*
+###############################################################################
+                                  AVATAR
+###############################################################################
+*/
+
+.avatar {
+  border-radius: 50%;
+}
+
+/*
+###############################################################################
+                                  SELECTIZE
+###############################################################################
+*/
+
+.selectize-control {
+  width: 100%;
+}
+
+/*
+###############################################################################
+                                AUTOCOMPLETE
+###############################################################################
+*/
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  display: none;
+  min-width: 160px;
+  padding: 6px 12px;
+  margin: 10px 0 10px 25px;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+}
+
+.ui-menu-item > a.ui-corner-all {
+  display: block;
+  padding: 3px 15px;
+  clear: both;
+  font-weight: normal;
+  line-height: 18px;
+  color: #555555;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.ui-state-hover, .ui-state-active {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: $medium-grey;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  background-image: none;
+}

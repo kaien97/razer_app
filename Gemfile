@@ -38,6 +38,7 @@ gem 'oauth2', '~> 1.4.2'
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jquery-rails', '~> 4.3.5'
+gem 'jquery-ui-rails', '~> 6.0.1'
 
 # Easy model search for ids
 gem 'friendly_id', '~> 5.1.0'

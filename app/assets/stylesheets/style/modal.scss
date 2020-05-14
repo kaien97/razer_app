@@ -1,0 +1,89 @@
+.modal {
+  overflow: auto;
+}
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching full width */
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+    border-radius: $box-radius;
+}
+
+// Modal Right Sidebar
+
+.right-modal, .sub-right-modal {
+  .modal-content {
+    border-radius: 0;
+    min-height: 100%;
+  }
+  .modal-dialog {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    width: 500px;
+    overflow: auto
+  }
+  .modal-body {
+    overflow-y: auto;
+    position: absolute;
+    top: 56px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  @media (max-width: $SMALL) {
+    .modal-content {
+      border-radius: inherit;
+    }
+    .modal-dialog {
+      position: relative;
+      width: auto;
+      padding: 5px;
+    }
+  }
+
+  &.modal.fade .modal-dialog {
+		right: -500px;
+    -webkit-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+		-moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+		-o-transition: opacity 0.3s linear, right 0.3s ease-out;
+		transition: opacity 0.3s linear, right 0.3s ease-out;
+	}
+
+	&.modal.fade.in .modal-dialog {
+		right: 0;
+	}
+}
+
+.large-modal {
+  margin: auto;
+  max-width: 950px;
+  .modal-dialog {
+    position: relative;
+    width: auto;
+    padding: 5px;
+  }
+}

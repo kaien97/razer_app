@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RazerApp</title>
+    <title><%= @page_title or "Razer App" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style><%= yield :stylesheets %></style>
   </head>
 
+  <div id="modal-container"></div>
+
   <body>
-    <%= yield %>
+    <div class="wrapper">
+      <%= render 'layouts/navigation/layout'%>
+      <div class="content-wrapper">
+        <div class="row full-width">
+          <div class="col-md-12" id="flash-container">
+            <% flash.each_with_index do |(key, value), index| %>
+              <div class="alert alert-<%= key %> application-alert">
+                <a href="#" data-dismiss="alert" class="close">×</a>
+                <div class="value">
+                  <%= value %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+
+        <%= yield %>
+
+      </div>
+    </div>
   </body>
 </html>
