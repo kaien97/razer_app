@@ -3,16 +3,6 @@
                               Buttons
 ###############################################################################
 */
-// .btn-primary {
-//   background-color: $primary-blue;
-//   border-radius: $box-radius;
-//   height: $button-height;
-//   line-height: $button-height;
-//   font-size: $font-size-normal;
-//   text-align: center;
-//   color: #fff;
-// }
-
 
 .btn-primary {
   @include button-variant(#fff, $primary-blue, darken($primary-blue, 7.5%));
@@ -166,113 +156,6 @@
   display: none;
 }
 
-
-/*
-###############################################################################
-                            Country Code
-###############################################################################
-*/
-
-.intl-tel-input {
-  display: table-cell;
-}
-.default-country-wrapper .intl-tel-input {
-  .iti-flag {
-    background-color: transparent;
-  }
-
-  .flag-container {
-    display: inline-block;
-    border-color: #d2d6de;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    height: 40px;
-
-    .selected-flag {
-      width: inherit;
-
-      .iti-arrow {
-        display: inline;
-        right: 3px;
-      }
-
-      .selected-name {
-        display: inline-block;
-        position: relative;
-        left: 30px;
-        top: 7px;
-        white-space: nowrap;
-        margin-right: 45px;
-        max-width: 130px;
-        overflow: hidden;
-      }
-    }
-  }
-}
-.intl-tel-input .country-list {
-  overflow-y: auto !important;
-}
-.input-group .intl-tel-input .form-control {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 0;
-}
-
-.intl-tel-input .country-list {
-  width: 180px !important;
-  white-space: normal !important;
-}
-
-.intl-tel-input .dropdown {
-  width: 180px !important;
-  white-space: normal !important;
-}
-
-@media only screen and (max-width: $MEDIUM) {
-  .intl-tel-input .country-list .country {
-    width: 100% !important;
-  }
-
-  .intl-tel-input.iti-container {
-    z-index: 1000001 !important;
-  }
-}
-#callForm .intl-tel-input .country-list,
-.bottom-popup-box .intl-tel-input .country-list {
-  bottom: 100%;
-  margin-bottom: -1px;
-  .dropdown {
-  }
-  .dropup {
-  }
-}
-
-// Country code scrollbar
-
-/* Turn on custom 8px wide scrollbar */
-.intl-tel-input .country-list::-webkit-scrollbar {
-  width: 8px;
-  background-color: rgba(0,0,0,0);
-  -webkit-border-radius: 100px;
-}
-
-/* hover effect for both scrollbar area, and scrollbar 'thumb' */
-.intl-tel-input .country-list::-webkit-scrollbar:hover {
-  background-color: rgba(0, 0, 0, 0.09);
-}
-
-/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
-.intl-tel-input .country-list::-webkit-scrollbar-thumb:vertical {
-  background: rgba(0,0,0,0.5);
-  -webkit-border-radius: 100px;
-}
-.intl-tel-input .country-list::-webkit-scrollbar-thumb:vertical:active {
-  background: rgba(0,0,0,0.61);
-  -webkit-border-radius: 100px;
-}
-
-
 /*
 ###############################################################################
                                     TABLES
@@ -294,7 +177,7 @@
 }
 
 .table {
-  font-family: "rubik";
+  font-family: "roboto";
 }
 
 .table {
@@ -373,7 +256,7 @@ label {
 }
 
 .small-label {
-  font-family: "rubik";
+  font-family: "roboto";
   font-size: 13px;
   color: #bdbdbd;
   font-weight: normal;
@@ -497,7 +380,7 @@ hr.large {
 }
 
 .box-title {
-  font-family: "rubik";
+  font-family: "roboto";
   padding: 20px 10px 20px 40px;
   font-weight: bold;
   font-size: 20;
@@ -580,14 +463,4 @@ hr.large {
   &.fail {
     background-color: #f2dede;
   }
-}
-
-/*
-###############################################################################
-                            Form & Dropdown Elements
-###############################################################################
-*/
-
-.new-dropdown {
-  color: darken($grey, 15%);
 }

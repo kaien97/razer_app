@@ -1,0 +1,12 @@
+<%= form_for Identity.new, url: account_verification_path do |f| %>
+<div class="form">
+  <%= label_tag "Front of ID" %>
+  <%= f.file_field :temp_image_front, accept: 'image/png,image/jpeg', class:"form-control" %>
+
+  <%= label_tag "Back of ID" %>
+  <%= f.file_field :temp_image_back, accept: 'image/png,image/jpeg', class: "form-control" %>
+</div>
+<div class="form-footer">
+  <%= submit_tag "Submit", class: "btn btn-primary large pull-right"%>
+</div>
+<% end %>
