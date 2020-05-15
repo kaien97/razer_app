@@ -30,18 +30,17 @@ class AccountController < ApplicationController
   end
 
   def dashboard
-    @user = current_user
+    @account = current_user.account
 
-
-
-    if current_user.mambu_id
-      #@mambu_key = current_user.mambu_id
+    if @account.mambu_user_id
+      @mambu_key = @account.mambu_user_id
     else
-      create_mambu_account
+      IdentityService.new.create_mambu_client(@account.identity)
+      IdentityService.new.create_mambu_account(@account)
     end
 
-    request = HTTParty.get("https://Team121:pass3F74506E9B@razerhackathon.sandbox.mambu.com/api/clients/#{@mambu_key}")
-
+    @account_details = HTTParty.get("https://#{ENV['MAMBU_USERNAME']}:#{ENV['MAMBU_PASSWORD']}@#{ENV['MAMBU_TENANT']}/api/savings/#{@account.mambu_account_id}/")
+    # balance in @account_details["balance"]
   end
 
   private
@@ -53,31 +52,7 @@ class AccountController < ApplicationController
   end
 
   def verify_params
-    params.require(:identity).permit(:temp_image_front, :temp_image_back)
+    params.require(:identity).permit(:first_name, :middle_name, :last_name, :temp_image_front, :temp_image_back)
   end
 
-  def create_mambu_account
-
-    idDocuments = [
-      {
-        "documentType": "NRIC",
-        "documentId": "S1234567A",
-        "issuingAuthority": "Police",
-        "validUntil": Time.now + 2.years,
-        "identificationDocumentTemplateKey": "9b0a97094b4cd73f014b5f5ef0e811d2"
-      }
-    ]
-
-    body = {
-              "client":{
-                "firstName": "Test", #current_user.first_name,
-                "lastName": "User", #current_user.last_name,
-                #"middleName": current_user.middle_name
-                "assignedBranchKey": ""
-              },
-              "idDocuments": idDocuments,
-    }
-
-    request = HTTParty.post("https://Team121:pass3F74506E9B@razerhackathon.sandbox.mambu.com/api/clients", body: body)
-  end
 end

@@ -10,10 +10,10 @@ class IdentityService
       'base64image': encode_image(identity.temp_image_front),    }
     body2 = {
       'base64image': encode_image(identity.temp_image_back),    }
-    request1 = HTTParty.post("https://niw1itg937.execute-api.ap-southeast-1.amazonaws.com/Prod/verify",
+    request1 = HTTParty.post("#{ENV['FWD_URL']}/Prod/verify",
                              headers: header,
                              body: body1.to_json)
-    request2 = HTTParty.post("https://niw1itg937.execute-api.ap-southeast-1.amazonaws.com/Prod/verify",
+    request2 = HTTParty.post("#{ENV['FWD_URL']}/Prod/verify",
                              headers: header,
                              body: body2.to_json)
 
@@ -30,8 +30,14 @@ class IdentityService
         type = request1.parsed_response["vision"]["type"]
       end
 
+      name = request1.parsed_response["vision"]["extract"]["name"]
+
       if ((request1.parsed_response["vision"]["extract"]["idNum"] != request2.parsed_response["vision"]["extract"]["idNum"]))
         message = "Please use the same ID for the front and back!"
+        return false, message
+      elsif !(name.include?(identity.first_name) && name.include?(identity.last_name) && name.include?(identity.middle_name.to_s))
+        message = "Please enter your name as it is written on the ID!"
+        return false, message
       end
 
       result = identity.update( type: type,
@@ -60,7 +66,100 @@ class IdentityService
     end
   end
 
+  def create_mambu_client(identity)
+    @base_url = "https://#{ENV['MAMBU_USERNAME']}:#{ENV['MAMBU_PASSWORD']}@#{ENV['MAMBU_TENANT']}"
+
+    id_details = get_mambu_id_details
+
+    for id_type in id_details
+      if id_type["documentType"].include?(identity.type)
+        @id_type = id_type
+        break
+      end
+    end
+
+    if @id_type.nil?
+      return
+    end
+
+    idDocuments = [
+      {
+        "documentType": @id_type["documentType"],
+        "documentId": "S111111A",#decrypt(identity.encrypted_idnum),
+        "issuingAuthority": @id_type["issuingAuthority"],
+        "validUntil": (Time.now + 2.years).strftime("%F"), # NRIC has no expiry?
+        "identificationDocumentTemplateKey": @id_type["encodedKey"],
+      }
+    ]
+
+    header = {
+      'Content-Type': 'application/json'
+    }
+
+    body = {
+              "client":{
+                "firstName": identity.first_name,
+                "lastName": identity.last_name,
+                "preferredLanguage": "ENGLISH",
+                #"middleName": current_user.middle_name
+                "assignedBranchKey": ENV['MAMBU_KEY']
+              },
+              "idDocuments": idDocuments,
+              "addresses": [],
+              "customInformation": [
+                {
+                  "value": identity.account.hash_id,
+                  "customFieldID": "TesLahAccountId"
+                }
+              ]
+            }
+
+    request = HTTParty.post("#{@base_url}/api/clients", headers: header, body: body.to_json)
+    #request = HTTParty.get("#{@base_url}/api/clients?branchID=#{ENV['MAMBU_KEY']}")
+
+    mambu_id = request.parsed_response["client"]["encodedKey"]
+    identity.account.update(mambu_user_id: mambu_id)
+  end
+
+  def create_mambu_account(account)
+    @base_url = "https://#{ENV['MAMBU_USERNAME']}:#{ENV['MAMBU_PASSWORD']}@#{ENV['MAMBU_TENANT']}"
+
+    body = {
+              "savingsAccount": {
+                  "name": "Digital Account",
+                  "accountHolderType": "CLIENT",
+                  "accountHolderKey": account.mambu_id,
+                  "accountState": "APPROVED",
+                  "productTypeKey": "8a8e878471bf59cf0171bf6979700440",
+                  "accountType": "CURRENT_ACCOUNT",
+                  "currencyCode": "SGD",
+                  "allowOverdraft": "true",
+                  "overdraftLimit": "100",
+                  "overdraftInterestSettings": {
+                      "interestRate": 5
+                  },
+                      "interestSettings": {
+                  "interestRate": "1.25"
+                  }
+              }
+            }
+
+    header = {
+      'Content-Type': 'application/json',
+    }
+
+    request = HTTParty.post("#{@base_url}/api/savings", headers: header, body: body.to_json)
+    mambu_id = request.parsed_response["savingsAccount"]["encodedKey"]
+    account.update(mambu_account_id: mambu_id)
+  end
+
   private
+
+  def get_mambu_id_details
+    request = HTTParty.get("#{@base_url}/api/settings/iddocumenttemplates")
+    return request.parsed_response
+  end
+
   # delete sensitive images from database
   def clear_images(identity)
     identity.update(temp_image_back: "", temp_image_front: "")

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_082439) do
+ActiveRecord::Schema.define(version: 2020_05_15_150224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2020_05_15_082439) do
     t.integer "credit_score"
     t.bigint "user_id"
     t.string "hash_id"
+    t.string "mambu_user_id"
+    t.string "mambu_account_id"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
@@ -57,6 +59,9 @@ ActiveRecord::Schema.define(version: 2020_05_15_082439) do
     t.bigint "account_id"
     t.string "temp_image_front"
     t.string "temp_image_back"
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
     t.index ["account_id"], name: "index_identities_on_account_id"
   end
 

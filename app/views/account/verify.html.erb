@@ -1,12 +1,20 @@
 <%= form_for Identity.new, url: account_verification_path do |f| %>
-<div class="form">
+<div class="form-container center">
+  <%= label_tag "First Name" %>
+  <%= f.text_field :first_name, required: true, class:"form-control", placeholder: "John" %>
+
+  <%= label_tag "Middle Name" %>
+  <%= f.text_field :middle_name, class:"form-control" %>
+
+  <%= label_tag "Last Name" %>
+  <%= f.text_field :last_name, required: true, class:"form-control", placeholder: "Smith" %>
+
   <%= label_tag "Front of ID" %>
-  <%= f.file_field :temp_image_front, accept: 'image/png,image/jpeg', class:"form-control" %>
+  <%= f.file_field :temp_image_front, accept: 'image/png,image/jpeg', required: true, class:"form-control" %>
 
   <%= label_tag "Back of ID" %>
-  <%= f.file_field :temp_image_back, accept: 'image/png,image/jpeg', class: "form-control" %>
-</div>
-<div class="form-footer">
+  <%= f.file_field :temp_image_back, accept: 'image/png,image/jpeg', required: true, class: "form-control" %>
+
   <%= submit_tag "Submit", class: "btn btn-primary large pull-right"%>
 </div>
 <% end %>
