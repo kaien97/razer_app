@@ -5,7 +5,8 @@
 */
 
 @font-face {
-  font-family: "perpetua";
+  font-family: 'roboto';
+  src: font-url("Roboto/Roboto-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -14,7 +15,7 @@
 html, body, div, span,
 a, p, h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "perpetua";
+  font-family: "roboto";
 }
 
 .font-distinct {
