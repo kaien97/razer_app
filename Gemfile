@@ -26,6 +26,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Run Scheduled scripts
+gem 'whenever', require: false
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem "aws-sdk-s3", require: false

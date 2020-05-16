@@ -1,4 +1,4 @@
-class Account < ApplicationRecord
+class PersonalAccount < ApplicationRecord
   include Friendlyable
   belongs_to :user
   has_one :identity

@@ -10,20 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_150224) do
+ActiveRecord::Schema.define(version: 2020_05_16_040753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "accounts", force: :cascade do |t|
-    t.float "money"
-    t.integer "credit_score"
-    t.bigint "user_id"
-    t.string "hash_id"
-    t.string "mambu_user_id"
-    t.string "mambu_account_id"
-    t.index ["user_id"], name: "index_accounts_on_user_id"
-  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +36,30 @@ ActiveRecord::Schema.define(version: 2020_05_15_150224) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "business_accounts", force: :cascade do |t|
+    t.float "money"
+    t.bigint "user_id"
+    t.string "hash_id"
+    t.string "mambu_user_id"
+    t.string "mambu_account_id"
+    t.index ["user_id"], name: "index_business_accounts_on_user_id"
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.string "timings_available"
+    t.integer "postal_code"
+    t.string "service"
+    t.string "name"
+    t.string "address"
+    t.integer "price_max"
+    t.integer "price_min"
+    t.jsonb "info", default: {}
+    t.string "phone_number"
+    t.string "hash_id"
+    t.bigint "business_account_id"
+    t.index ["business_account_id"], name: "index_businesses_on_business_account_id"
+  end
+
   create_table "identities", force: :cascade do |t|
     t.string "encrypted_idnum"
     t.string "encrypted_dob"
@@ -54,15 +68,15 @@ ActiveRecord::Schema.define(version: 2020_05_15_150224) do
     t.string "encrypted_country"
     t.datetime "issue_date"
     t.datetime "end_date"
-    t.string "type"
+    t.string "id_type"
     t.boolean "verified", default: false
-    t.bigint "account_id"
     t.string "temp_image_front"
     t.string "temp_image_back"
     t.string "first_name"
     t.string "middle_name"
     t.string "last_name"
-    t.index ["account_id"], name: "index_identities_on_account_id"
+    t.bigint "personal_account_id"
+    t.index ["personal_account_id"], name: "index_identities_on_personal_account_id"
   end
 
   create_table "loans", force: :cascade do |t|
@@ -76,6 +90,16 @@ ActiveRecord::Schema.define(version: 2020_05_15_150224) do
     t.index ["lender_hash_id"], name: "index_loans_on_lender_hash_id"
     t.index ["loaner_hash_id", "lender_hash_id"], name: "index_loans_on_loaner_hash_id_and_lender_hash_id", unique: true
     t.index ["loaner_hash_id"], name: "index_loans_on_loaner_hash_id"
+  end
+
+  create_table "personal_accounts", force: :cascade do |t|
+    t.float "money"
+    t.integer "credit_score"
+    t.bigint "user_id"
+    t.string "hash_id"
+    t.string "mambu_user_id"
+    t.string "mambu_account_id"
+    t.index ["user_id"], name: "index_personal_accounts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -105,7 +129,9 @@ ActiveRecord::Schema.define(version: 2020_05_15_150224) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "accounts", "users", on_delete: :cascade
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "identities", "accounts", on_delete: :cascade
+  add_foreign_key "business_accounts", "users", on_delete: :cascade
+  add_foreign_key "businesses", "business_accounts", on_delete: :cascade
+  add_foreign_key "identities", "personal_accounts", on_delete: :cascade
+  add_foreign_key "personal_accounts", "users", on_delete: :cascade
 end

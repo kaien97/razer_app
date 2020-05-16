@@ -40,7 +40,7 @@ class IdentityService
         return false, message
       end
 
-      result = identity.update( type: type,
+      result = identity.update( id_type: type,
                                 verified: true,
                                 encrypted_idnum: encrypt(request1.parsed_response["vision"]["extract"]["idNum"]),
                                 encrypted_dob: encrypt(request1.parsed_response["vision"]["extract"]["dob"]),
@@ -72,7 +72,7 @@ class IdentityService
     id_details = get_mambu_id_details
 
     for id_type in id_details
-      if id_type["documentType"].include?(identity.type)
+      if id_type["documentType"].include?(identity.id_type)
         @id_type = id_type
         break
       end
@@ -85,7 +85,7 @@ class IdentityService
     idDocuments = [
       {
         "documentType": @id_type["documentType"],
-        "documentId": "S111111A",#decrypt(identity.encrypted_idnum),
+        "documentId": decrypt(identity.encrypted_idnum),
         "issuingAuthority": @id_type["issuingAuthority"],
         "validUntil": (Time.now + 2.years).strftime("%F"), # NRIC has no expiry?
         "identificationDocumentTemplateKey": @id_type["encodedKey"],
@@ -108,17 +108,16 @@ class IdentityService
               "addresses": [],
               "customInformation": [
                 {
-                  "value": identity.account.hash_id,
-                  "customFieldID": "TesLahAccountId"
+                  "value": identity.personal_account.hash_id,
+                  "customFieldID": "razerID"
                 }
               ]
             }
 
     request = HTTParty.post("#{@base_url}/api/clients", headers: header, body: body.to_json)
     #request = HTTParty.get("#{@base_url}/api/clients?branchID=#{ENV['MAMBU_KEY']}")
-
     mambu_id = request.parsed_response["client"]["encodedKey"]
-    identity.account.update(mambu_user_id: mambu_id)
+    identity.personal_account.update(mambu_user_id: mambu_id)
   end
 
   def create_mambu_account(account)
@@ -128,7 +127,7 @@ class IdentityService
               "savingsAccount": {
                   "name": "Digital Account",
                   "accountHolderType": "CLIENT",
-                  "accountHolderKey": account.mambu_id,
+                  "accountHolderKey": account.mambu_user_id,
                   "accountState": "APPROVED",
                   "productTypeKey": "8a8e878471bf59cf0171bf6979700440",
                   "accountType": "CURRENT_ACCOUNT",

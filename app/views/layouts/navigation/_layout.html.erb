@@ -1,3 +1,5 @@
 <%= render "layouts/navigation/header" %>
-<%= render "layouts/navigation/sidebar" %>
+<% if user_signed_in? %>
+  <%#= render "layouts/navigation/sidebar" %>
+<% end %>
 <%= render 'layouts/navigation/header/modal'%>

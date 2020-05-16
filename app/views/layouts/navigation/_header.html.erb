@@ -1,7 +1,10 @@
 <div class="main-header navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-	    <%= link_to "TesLah!", root_path, id: "logo" %>
-		<nav>
+    <%= link_to "TesLah!", root_path, id: "logo" %>
+		<nav class"navbar navbar-static-top">
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>      
 		  <ul class="nav navbar-nav navbar-right">
 		    <li><%= link_to "Home", root_path %></li>
 			<li><%= link_to "Help", help_path %></li>

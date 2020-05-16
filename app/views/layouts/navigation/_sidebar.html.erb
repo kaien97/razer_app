@@ -7,7 +7,16 @@
   </div>
   <div class="sidebar">
     <ul class="sidebar-menu tree" data-widget="tree">
-      
+      <li class= "active<%#= current_class?('/dashboard')%>">
+        <a href="/account/<%="#{current_user.personal_account.hash_id}"%>/dashboard"><i class="fa fa-bar-chart"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class= "active<%#= current_class?('/search')%>">
+        <a href="/businesses/search"><i class="fa fa-search"></i>
+          <span>Find an Activity</span>
+        </a>
+      </li>
     </ul>
   </div>
 </div>

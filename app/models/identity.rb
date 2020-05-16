@@ -1,3 +1,3 @@
 class Identity < ApplicationRecord
-  belongs_to :account
+  belongs_to :personal_account
 end

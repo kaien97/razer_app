@@ -1,0 +1,16 @@
+<%= form_tag(search_results_businesses_path, :method => "get") do %>
+<div class="search-container center">
+  <h1>I want to...</h1>
+  <%= text_field_tag 'search[activity]', nil, required: true, class:"form-control search-box", placeholder: "bowl, cut hair, visit a doctor..." %>
+
+  at
+  <div class="select-container">
+    <%= select_tag 'search[timings]', options_for_select(@timings, @timings.first), required: true, class:"form-control search-box" %>
+    <i class="fa fa-caret-down"></i>
+  </div>
+  near
+  <%= text_field_tag 'search[location]', nil, required: true, class:"form-control search-box", placeholder: "Location or Postal Code" %>
+
+  <%= submit_tag "Search!", class: "btn btn-primary large pull-right"%>
+</div>
+<% end %>

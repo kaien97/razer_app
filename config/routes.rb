@@ -11,4 +11,12 @@ Rails.application.routes.draw do
     get 'verify'
     post 'verification'
   end
+
+  resources :businesses do
+    collection do
+      get 'search'
+      get 'search_results'
+    end
+  end
+
 end
