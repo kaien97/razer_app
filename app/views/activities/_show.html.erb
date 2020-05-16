@@ -8,9 +8,14 @@
               <h4>Booking with <%= @activity.business.name %></h4>
             </div>
             <div class="modal-body">
-              <%= "#{@activity.timing.strftime('%-d %b, %-l%P')} - #{@activity.n_pax} pax" %>
-              <br><br>
-              <%= button_to "Cancel Booking", activity_path(@activity.hash_id), class: "btn-danger large pull-left", method: :patch, params: {status: "cancel"} %>
+              <div class="row padding-10">
+                <div class="col-md-6 vertical-align-center">
+                  <%= "#{@activity.timing.strftime('%-d %b, %-l%P')} - #{@activity.n_pax} pax" %>
+                </div>
+                <div class="col-md-6">
+                  <%= button_to "Cancel Booking", activity_path(@activity.hash_id), class: "btn-danger large pull-right", method: :patch, params: {status: "cancel"} %>
+                </div>
+              </div>
               <%= button_to "Complete Payment", activity_path(@activity.hash_id), class: "btn-primary large pull-right", method: :patch, params: {status: "pay"} %>
               <div class="clear-float"></div>
             </div>

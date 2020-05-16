@@ -2,17 +2,17 @@
   <!-- Logo -->
   <div class="logo-container">
       <a href="/" class="logo">
-        <%#=image_tag 'logo/full-black.png', height: 27, class: 'absolute-center'%>
+        <%=image_tag 'logo/lyfelogosanssub.png', height: 27, class: 'horizontal-center'%>
       </a>
   </div>
   <div class="sidebar">
     <ul class="sidebar-menu tree" data-widget="tree">
-      <li class= "active<%#= current_class?('/dashboard')%>">
+      <li>
         <a href="/account/<%="#{current_user.personal_account.hash_id}"%>/dashboard"><i class="fa fa-bar-chart"></i>
           <span>Dashboard</span>
         </a>
       </li>
-      <li class= "active<%#= current_class?('/search')%>">
+      <li>
         <a href="/businesses/search"><i class="fa fa-search"></i>
           <span>Find an Activity</span>
         </a>

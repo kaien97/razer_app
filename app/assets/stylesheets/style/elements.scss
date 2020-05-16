@@ -5,44 +5,20 @@
 */
 
 .btn-primary {
-  @include button-variant(#fff, $primary-blue, darken($primary-blue, 7.5%));
+  @include button-variant(#fff, $theme-grey, $theme-dark-blue);
   border-radius: $box-radius;
   &.large {
     box-shadow: 1px 3px 10px 0px #2E56FC70;
     line-height: $button-large-height;
     height: $button-large-height;
-    text-align: center;
-    padding: 0 20px;
-  }
-}
-
-.btn-primary-green {
-  @include button-variant(#fff, $razer-green-dark, darken($razer-green-dark, 7.5%));
-  border-radius: $box-radius;
-  &.large {
-    box-shadow: 1px 3px 10px 0px #2E56FC70;
-    line-height: $button-large-height;
-    height: $button-large-height;
-    text-align: center;
-    padding: 0 20px;
-  }
-}
-
-.btn-default {
-  @include button-variant(#fff, $grey, darken($grey, 7.5%));
-  color: #000000 !important;
-  border-radius: $box-radius;
-  &.large {
-    box-shadow: 1px 3px 10px 0px #D6D6D670;
-    line-height: $button-large-height;
-    height: $button-large-height;
+    width: 100%;
     text-align: center;
     padding: 0 20px;
   }
 }
 
 .btn-danger {
-  @include button-variant(#fff, $pastel-red, darken($pastel-red, 7.5%));
+  @include button-variant(#fff, $theme-red, darken($theme-red, 7.5%));
   color: #ffffff !important;
   border-radius: $box-radius;
   &.large {
@@ -52,51 +28,6 @@
     text-align: center;
     padding: 0 20px;
   }
-}
-
-.btn-accent-blue {
-  @include button-variant(#fff, $accent-blue, darken($accent-blue, 7.5%));
-  color: #ffffff !important;
-  border-radius: $box-radius;
-  &.large {
-    box-shadow: 1px 3px 10px 0px #8c9eff70;
-    line-height: $button-large-height;
-    height: $button-large-height;
-    text-align: center;
-    padding: 0 20px;
-  }
-}
-
-.btn-red {
-  @include button-variant(#fff, $red-btn, darken($red-btn, 7.5%));
-  color: #ffffff !important;
-  border-radius: $box-radius;
-  &.large {
-    box-shadow: 1px 3px 10px 0px #8c9eff70;
-    line-height: $button-large-height;
-    height: $button-large-height;
-    text-align: center;
-    padding: 0 20px;
-  }
-}
-
-.btn-green {
-  @include button-variant(#fff, darken($razer-green-dark, 7.5%), darken($razer-green-dark, 15%));
-  color: #ffffff !important;
-  border-radius: $box-radius;
-  &.large {
-    box-shadow: 1px 3px 10px 0px #8c9eff70;
-    line-height: $button-large-height;
-    height: $button-large-height;
-    text-align: center;
-    padding: 0 20px;
-  }
-}
-
-.btn-custom {
-  border-radius: $box-radius;
-  color: #ffffff;
-  &:hover { opacity: 0.8; }
 }
 
 .btn-footer {
@@ -110,26 +41,6 @@
   font-weight: normal;
   &:hover {
     text-decoration: underline;
-  }
-}
-
-.label-business {
-  background-color: #3949ab !important;
-}
-
-.label-primary {
-  background-color: #2E56FC !important;
-}
-
-
-.label-container {
-  position: relative;
-  .label {
-    position: absolute;
-    padding: 4px;
-    margin-left: 5px;
-    font-size: 10px;
-    font-weight: normal;
   }
 }
 
@@ -177,7 +88,7 @@
 }
 
 .table {
-  font-family: "roboto";
+  font-family: "muli";
 }
 
 .table {
@@ -206,80 +117,6 @@ label {
   font-weight: normal;
 }
 
-
-.red-tag {
-  background-color: $pastel-red;
-  color: #ffffff !important;
-  border-radius: 10px !important;
-  // padding: 3px 9px;
-  font-size: 12px !important;
-  height: 19px !important;
-  line-height: 16px !important;
-  opacity: 0.9 !important;
-}
-
-.premium-tag {
-  background-color: #00bfa5;
-  color: #ffffff;
-  &:hover {
-    color: #ffffff;
-    background-color: #00897b;
-  }
-}
-
-.beta-tag {
-  background-color: #d81b60;
-  color: #ffffff;
-  padding: .2em .5em .3em;
-  &:hover {
-    color: #ffffff;
-    background-color: #d81b60;
-  }
-}
-
-.agency-tag {
-  background-color: #77dd77;
-  color: #ffffff;
-  &:hover {
-    color: #ffffff;
-    background-color: #50d350;
-  }
-}
-
-.user-tag {
-  background-color: #eeeeee;
-  color: #000000;
-  &:hover {
-    color: #000000;
-    background-color: #C5C6CB;
-  }
-}
-
-.small-label {
-  font-family: "roboto";
-  font-size: 13px;
-  color: #bdbdbd;
-  font-weight: normal;
-}
-
-.small-tag {
-  background: $medium-grey;
-  padding: 3px;
-  color: #fff;
-  border-radius: 3px;
-  font-size: 11px;
-  margin-right: 2px;
-}
-
-.small-tag-empty {
-  border: 1px solid $dark-grey;
-  padding: 3px;
-  color: $dark-grey;
-  border-radius: 3px;
-  font-size: 11px;
-  margin-right: 2px;
-}
-
 // Help Symbol
 .user-help{
   color: #458ce2;
@@ -294,8 +131,6 @@ label {
                               Custom Tabs
 ###############################################################################
 */
-
-
 
 hr.large {
   margin-top: 0;
@@ -368,6 +203,7 @@ hr.large {
 .box {
   border: none;
   border-radius: $box-radius;
+  background-color: $theme-dark-blue !important;
 
   .box-body.settings {
     padding: 10px 50px;
@@ -379,8 +215,8 @@ hr.large {
 }
 
 .box-title {
-  font-family: "roboto";
-  padding: 20px 10px 20px 40px;
+  font-family: "muli";
+  padding: 20px 10px 20px 20px;
   font-weight: bold;
   font-size: 20;
 }
@@ -397,8 +233,8 @@ hr.large {
 .pagination > .active > span,
 .pagination > .active > span:hover,
 .pagination > .active > span:focus {
-  background-color: $primary-blue;
-  border-color: $primary-blue;
+  background-color: $theme-cyan;
+  border-color: $theme-cyan;
 }
 
 
@@ -445,21 +281,5 @@ hr.large {
 
   @media (min-width: 1920px) {
     width: 25%;
-  }
-}
-
-// Modal Flash Messages
-.modal-flash {
-  display: none;
-  padding: 3px;
-
-  // Success message in modal
-  &.success {
-    background-color: #dff0d8;
-  }
-
-  // Failed message in modal
-  &.fail {
-    background-color: #f2dede;
   }
 }

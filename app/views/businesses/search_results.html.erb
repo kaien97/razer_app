@@ -9,18 +9,22 @@
     <br><br>
     I want to...
     <%= render "shared/search_bar" %>
+  <% end %>
   <div class='center'>
     <div class='flex-container flex-start box-padding'>
       <% @business_list.each do |b| %>
         <div class="box result-box">
-          <div class="box-header with-border">
-            <h3 class="box-title"><%= b.name %></h3>
+          <div class="box-header center-text">
+            <h2 class="box-title"><%= b.name %></h2>
           </div>
           <div class="box-body">
             <!--<img src="https://picsum.photos/390/300">-->
-            <b>Availability: </b><%= b.timings_available.sort.to_sentence %><br>
-            <b>Price Range: </b>$<%= b.price_min %> - $<%= b.price_max %><br>
-            <b>Address: </b><%= b.address %>
+            <!--<b>Availability: </b><%= b.timings_available.sort.to_sentence %><br>-->
+            <i class="fa fa-usd"></i>  <%= b.price_min %> - <%= b.price_max %>/pax
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-star"></i>  4.3
+            <br><br>
+            <i class="fa fa-map-pin"></i>  <%= b.address %>
           </div>
           <div class="box-footer">
             <%= button_to "Book Appointment", new_activity_path, class: "btn-primary large pull-right", method: :get, params: { b_id: b.hash_id } %>

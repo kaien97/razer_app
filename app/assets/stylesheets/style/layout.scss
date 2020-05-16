@@ -61,9 +61,7 @@
 // Wrapper
 .content-wrapper {
   background-color: $background-color;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: auto;
+  padding: 20px 40px;
 }
 
 @media (max-width: 767px) {
@@ -113,7 +111,7 @@
     display: inline-block;
 
     .input-group.search input {
-      font-family: "roboto";
+      font-family: "muli";
       height: $button-large-height;
       line-height: $button-large-height;
       border: none;
@@ -134,7 +132,7 @@
   .export-select {
     text-align: left;
     [type=button] {
-      font-family: "roboto";
+      font-family: "muli";
       border: none;
       line-height: 40px;
       padding-left: 16px;
@@ -164,7 +162,7 @@
         height: 40px;
         padding: 8px 16px;
         overflow: hidden;
-        font-family: "roboto";
+        font-family: "muli";
         width: 125px;
 
         &:focus, &:hover {
@@ -200,7 +198,7 @@
 }
 
 .result-box {
-  height: 450px;
+  height: 250px;
   width: 420px;
   margin: 15px;
   border-radius: $box-radius;
