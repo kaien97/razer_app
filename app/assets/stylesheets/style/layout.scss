@@ -113,7 +113,7 @@
     display: inline-block;
 
     .input-group.search input {
-      font-family: "rubik";
+      font-family: "roboto";
       height: $button-large-height;
       line-height: $button-large-height;
       border: none;
@@ -134,7 +134,7 @@
   .export-select {
     text-align: left;
     [type=button] {
-      font-family: "rubik";
+      font-family: "roboto";
       border: none;
       line-height: 40px;
       padding-left: 16px;
@@ -164,7 +164,7 @@
         height: 40px;
         padding: 8px 16px;
         overflow: hidden;
-        font-family: "rubik";
+        font-family: "roboto";
         width: 125px;
 
         &:focus, &:hover {
@@ -200,30 +200,3 @@
     justify-content: flex-start;
   }
 }
-
-/*
-* And with max cross-browser enabled.
-* Nobody should ever write this by hand.
-* Use a preprocesser with autoprefixing.
-*/
-// .row.display-flex {
-//   display: -webkit-box;
-//   display: -webkit-flex;
-//   display: -ms-flexbox;
-//   display: flex;
-//   -webkit-flex-wrap: wrap;
-//   -ms-flex-wrap: wrap;
-//   flex-wrap: wrap;
-// }
-//
-// .row.display-flex > [class*='col-'] {
-//   display: -webkit-box;
-//   display: -webkit-flex;
-//   display: -ms-flexbox;
-//   display: flex;
-//   -webkit-box-orient: vertical;
-//   -webkit-box-direction: normal;
-//   -webkit-flex-direction: column;
-//   -ms-flex-direction: column;
-//   flex-direction: column;
-// }
