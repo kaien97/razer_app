@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Run Scheduled scripts
 gem 'whenever', require: false
 
+# Charts
+gem 'chart-js-rails'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem "aws-sdk-s3", require: false

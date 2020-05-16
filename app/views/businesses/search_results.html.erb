@@ -1,3 +1,32 @@
-<h2>Results </h2>
-<div class="">
-</div>
+<section class="content-header">
+  <h1> Results </h1>
+</section>
+
+<section class="content">
+  <% if @business_list.empty? %>
+    <br><br>
+    <h2 class='text-center text-warning'> Sorry! We couldn't find any results, please try another search term </h2>
+    <br><br>
+    I want to...
+    <%= render "shared/search_bar" %>
+  <div class='center'>
+    <div class='flex-container flex-start box-padding'>
+      <% @business_list.each do |b| %>
+        <div class="box result-box">
+          <div class="box-header with-border">
+            <h3 class="box-title"><%= b.name %></h3>
+          </div>
+          <div class="box-body">
+            <!--<img src="https://picsum.photos/390/300">-->
+            <b>Availability: </b><%= b.timings_available.sort.to_sentence %><br>
+            <b>Price Range: </b>$<%= b.price_min %> - $<%= b.price_max %><br>
+            <b>Address: </b><%= b.address %>
+          </div>
+          <div class="box-footer">
+            <%= button_to "Book Appointment", new_activity_path, class: "btn-primary large pull-right", method: :get, params: { b_id: b.hash_id } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

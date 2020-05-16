@@ -93,6 +93,8 @@ GEM
       xpath (~> 3.2)
     case_transform (0.2)
       activesupport
+    chart-js-rails (0.1.7)
+      railties (> 3.1)
     childprocess (3.0.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
@@ -284,6 +286,7 @@ DEPENDENCIES
   bootstrap-will_paginate (~> 1.0.0)
   byebug
   capybara (>= 2.15)
+  chart-js-rails
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise (~> 4.7.1)

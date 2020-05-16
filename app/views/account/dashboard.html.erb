@@ -3,9 +3,9 @@
 </section>
 
 <section class="content">
-  <!-- ACCOUNT INFO -->
   <div class="row">
-    <div class="col-md-12">
+    <!-- ACCOUNT INFO -->
+    <div class="col-md-8">
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Account</h3>
@@ -18,14 +18,14 @@
 
         <div class="box-body" style="">
           <div class="row">
-            <div class="col-md-8">
-              <p class="text-center">
-                <strong>Current Account</strong>
+            <div class="col-md-12">
+              <p class="large-text">
+                <strong>$<%= @account_details["balance"] %></strong>
               </p>
 
               <div class="chart">
-                <!-- Sales Chart Canvas -->
-                <canvas id="salesChart" style="height: 180px; width: 575px;" height="225" width="718"></canvas>
+                <!-- Balance Chart Canvas -->
+                <canvas id="balanceChart" style="height: 180px; width: 575px;" height="225" width="718"></canvas>
               </div>
               <!-- /.chart-responsive -->
             </div>
@@ -33,11 +33,45 @@
         </div>
       </div>
     </div>
+
+    <!-- UPCOMING ACTIVITIES -->
+    <% if !@activities.blank? %>
+      <div class="col-md-4">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">Upcoming Activities</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+
+          <div class="box-body" style="">
+            <div class="row">
+              <div class="col-md-12">
+                <p class="small-text box-text">
+                  <%= @activities.first.timing.strftime("%-d %b") %>
+                </p>
+                <p class="large-text box-text">
+                  <strong><%= @activities.first.timing.strftime("%-l %p") %></strong>
+                </p>
+                <p class="medium-text box-text center-text">
+                  <%= @activities.first.business.name %>
+                </p>
+                <%= button_to "See Details", activity_path(@activities.first.hash_id), class: "btn-primary large pull-right", method: :get, remote: true %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
+
 
   <!-- SEARCH BAR -->
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-4">
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">I want to...</h3>
@@ -51,21 +85,7 @@
         <div class="box-body" style="">
           <div class="row">
             <div class="col-md-12">
-              <%= form_tag(search_results_businesses_path, :method => "get") do %>
-              <div class="search-container center">
-                <%= text_field_tag 'search[activity]', nil, required: true, class:"form-control search-box", placeholder: "bowl, cut hair, visit a doctor..." %>
-
-                at
-                <div class="select-container">
-                  <%= select_tag 'search[timings]', options_for_select(@timings, @timings.first), required: true, class:"form-control search-box" %>
-                  <i class="fa fa-caret-down"></i>
-                </div>
-                near
-                <%= text_field_tag 'search[location]', nil, required: true, class:"form-control search-box", placeholder: "Location or Postal Code" %>
-
-                <%= submit_tag "Search!", class: "btn btn-primary large pull-right"%>
-              </div>
-              <% end %>
+              <%= render "shared/search_bar" %>
             </div>
           </div>
         </div>
@@ -73,3 +93,52 @@
     </div>
   </div>
 </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script>
+var ctx = document.getElementById('balanceChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: <%= @transaction_data.to_json.html_safe %>,
+        color: "#878BB6",
+      }]
+    },
+    options: {
+        responsive: true,
+        legend: {
+          display: false,
+        },
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+        scales: {
+            xAxes: [{
+                type: 'time',
+                time: {
+                    unit: 'day'
+                },
+                gridLines: {
+                	display:false,
+                }
+            }],
+            yAxes: [{
+              ticks: {
+                  suggestedMin: 0,
+                  suggestedMax: <%= @max_amount %>
+              },
+              gridLines: {
+                display:false,
+              }
+            }]
+        }
+    }
+});
+</script>

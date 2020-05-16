@@ -137,6 +137,10 @@ a, p, h1, h2, h3, h4, h5, h6,
   display: none;
 }
 
+.logo-image {
+  width: 50px;
+}
+
 #logo {
 	float: left;
 	margin-right: 10px;
@@ -161,6 +165,23 @@ a, p, h1, h2, h3, h4, h5, h6,
 
 .center-text {
   text-align: center;
+}
+
+.large-text {
+  font-size: 50px;
+}
+
+.small-text {
+  font-size: 15px;
+  margin: 0;
+}
+
+.medium-text {
+  font-size: 35px;
+}
+
+.box-text {
+  margin-left: 20px;
 }
 
 .position-relative {

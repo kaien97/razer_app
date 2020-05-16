@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_040753) do
+ActiveRecord::Schema.define(version: 2020_05_16_165635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,17 +36,35 @@ ActiveRecord::Schema.define(version: 2020_05_16_040753) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.integer "n_pax"
+    t.float "cost"
+    t.float "paid"
+    t.string "status"
+    t.string "participant_list", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "hash_id"
+    t.bigint "business_id"
+    t.bigint "personal_account_id"
+    t.datetime "timing"
+    t.index ["business_id"], name: "index_activities_on_business_id"
+    t.index ["personal_account_id"], name: "index_activities_on_personal_account_id"
+  end
+
   create_table "business_accounts", force: :cascade do |t|
     t.float "money"
     t.bigint "user_id"
     t.string "hash_id"
     t.string "mambu_user_id"
     t.string "mambu_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_business_accounts_on_user_id"
   end
 
   create_table "businesses", force: :cascade do |t|
-    t.string "timings_available"
     t.integer "postal_code"
     t.string "service"
     t.string "name"
@@ -57,7 +75,18 @@ ActiveRecord::Schema.define(version: 2020_05_16_040753) do
     t.string "phone_number"
     t.string "hash_id"
     t.bigint "business_account_id"
+    t.string "timings_available"
     t.index ["business_account_id"], name: "index_businesses_on_business_account_id"
+  end
+
+  create_table "calendars", force: :cascade do |t|
+    t.string "cal_type"
+    t.string "cal_url"
+    t.jsonb "auth_info", default: {}
+    t.bigint "businesses_id"
+    t.bigint "personal_accounts_id"
+    t.index ["businesses_id"], name: "index_calendars_on_businesses_id"
+    t.index ["personal_accounts_id"], name: "index_calendars_on_personal_accounts_id"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -99,6 +128,8 @@ ActiveRecord::Schema.define(version: 2020_05_16_040753) do
     t.string "hash_id"
     t.string "mambu_user_id"
     t.string "mambu_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_personal_accounts_on_user_id"
   end
 
@@ -132,6 +163,8 @@ ActiveRecord::Schema.define(version: 2020_05_16_040753) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "business_accounts", "users", on_delete: :cascade
   add_foreign_key "businesses", "business_accounts", on_delete: :cascade
+  add_foreign_key "calendars", "businesses", column: "businesses_id", on_delete: :cascade
+  add_foreign_key "calendars", "personal_accounts", column: "personal_accounts_id", on_delete: :cascade
   add_foreign_key "identities", "personal_accounts", on_delete: :cascade
   add_foreign_key "personal_accounts", "users", on_delete: :cascade
 end

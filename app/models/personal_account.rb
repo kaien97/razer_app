@@ -2,6 +2,7 @@ class PersonalAccount < ApplicationRecord
   include Friendlyable
   belongs_to :user
   has_one :identity
+  has_many :activities
 
   has_many :credits, class_name:	"Loan",
                 foreign_key:	"loaner_id"

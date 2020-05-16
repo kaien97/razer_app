@@ -1,0 +1,46 @@
+<h3 class='text-center'>Make a Booking with <%= @business.name %></h3>
+<hr>
+<br><br>
+
+<%= form_for Activity.new do |f| %>
+<div class="form-container center">
+  <%= label_tag "Time" %>
+  <div class="select-container">
+    <%= select_tag 'activity[timing]', options_for_select(@business.timings_available.sort), required: true, class:"form-control search-box" %>
+    <i class="fa fa-caret-down"></i>
+  </div>
+  <%= label_tag "No. of People" %>
+  <%= f.number_field :n_pax, required: true, min: 1, class:"form-control", id: "npax" %>
+
+  <%= f.hidden_field :b_id, value: @business.hash_id, class:"form-control" %>
+
+  <div class="row">
+    <div class="col-md-8">
+      <h4>Estimated Cost</h4>
+    </div>
+    <div class="col-md-4 text-right">
+      <h4 id="cost_estimate">$<%= @cost_per_pax %></h4>
+    </div>
+  </div>
+  <br>
+  <em class='text-danger'>Note: If you decide to cancel the booking 30 minutes before the appointment, a 10% booking fee will be deducted</em>
+  <br><br>
+  <%= submit_tag "Make Booking", class: "btn btn-primary large pull-right"%>
+</div>
+<% end %>
+
+<script>
+// update the price form field:
+var setEstimate = function() {
+  var pax = parseInt($('#npax').val(), 10);
+  var newPrice = pax * <%= @cost_per_pax %>
+  // update form price:
+  $('#cost_estimate').text("$"+newPrice);
+};
+
+// bind events to update the price when something changes:
+$('#npax').on('change', function () {
+  setEstimate();
+});
+
+</script>

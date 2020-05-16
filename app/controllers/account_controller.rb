@@ -40,15 +40,26 @@ class AccountController < ApplicationController
     end
 
     @timings = []
-    time = Time.now + 1.hour
-    while time.strftime("%H").to_i != 0
-      @timings.append(time.strftime("%l%P"))
+    time = Time.now.beginning_of_hour + 1.hour
+    while time.strftime("%H").to_i != 22
+      @timings.append(time.strftime("%-l%P, %-d %b"))
       time += 1.hour
     end
 
     @account_details = HTTParty.get("https://#{ENV['MAMBU_USERNAME']}:#{ENV['MAMBU_PASSWORD']}@#{ENV['MAMBU_TENANT']}/api/savings/#{@account.mambu_account_id}/")
     # balance in @account_details["balance"]
     @transactions = HTTParty.get("https://#{ENV['MAMBU_USERNAME']}:#{ENV['MAMBU_PASSWORD']}@#{ENV['MAMBU_TENANT']}/api/savings/#{@account.mambu_account_id}/transactions")
+    @transaction_data = []
+    @max_amount = 0
+    for transaction in @transactions.parsed_response
+      @transaction_data.append({x: transaction['entryDate'],y: transaction['balance'].to_i})
+      @max_amount = transaction['balance'].to_i if (transaction['balance'].to_i > @max_amount)
+    end
+
+    @transaction_data = @transaction_data.append({x: @account.created_at, y: 0}).reverse
+    @max_amount *= 1.1
+
+    @activities = @account.activities.order("timing ASC").select{|a| a if (a.timing > Time.now && a.status != "cancelled")}
   end
 
   private

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style='z-index: 1000000'>
+    <div class="vertical-alignment-helper">
+      <div class="modal-dialog vertical-align-center" role="document">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Booking with <%= @activity.business.name %></h4>
+            </div>
+            <div class="modal-body">
+              <%= "#{@activity.timing.strftime('%-d %b, %-l%P')} - #{@activity.n_pax} pax" %>
+              <br><br>
+              <%= button_to "Cancel Booking", activity_path(@activity.hash_id), class: "btn-danger large pull-left", method: :patch, params: {status: "cancel"} %>
+              <%= button_to "Complete Payment", activity_path(@activity.hash_id), class: "btn-primary large pull-right", method: :patch, params: {status: "pay"} %>
+              <div class="clear-float"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
