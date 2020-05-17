@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Setup
 
-Things you may want to cover:
+0. Install Ruby on Rails, version ~> 5.2.4
 
-* Ruby version
+1. Database used is PostgreSQL. Install postgres and create a table 'razer_app_development'
 
-* System dependencies
+2. run `bundle install` on a shell to install dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. run `rails db:migrate` to create tables in database
