@@ -1,5 +1,7 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!, except: [:search, :search_results]
+
+  # Search bar page
   def search
     @timings = []
     time = Time.now.beginning_of_hour + 1.hour
@@ -30,11 +32,5 @@ class BusinessesController < ApplicationController
       @business_list = @business_list.select{|b| b if b.timings_available&.include?(params[:search][:timings]) }
       @business_list = @business_list.select{|b| b if params[:search][:activity].downcase.include?(b.service.downcase) }
     end
-  end
-
-  def help
-  end
-
-  def about
   end
 end

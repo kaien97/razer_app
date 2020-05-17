@@ -4,7 +4,7 @@
 # http://en.wikipedia.org/wiki/Cron
 
 set :output, "/log/cron.log"
-#
+#or future use - update available timings using calendar integrations
 every 30.minutes do
  runner "Business.update_timings"
 end

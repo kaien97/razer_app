@@ -6,12 +6,6 @@ class AccountController < ApplicationController
   def create
   end
 
-  def add
-  end
-
-  def select
-  end
-
   def delete
   end
 
@@ -32,6 +26,7 @@ class AccountController < ApplicationController
   def dashboard
     @account = current_user.personal_account
 
+    # Check if user has mambu account already, otherwise, create
     if @account.mambu_user_id
       @mambu_key = @account.mambu_user_id
     else
@@ -39,6 +34,7 @@ class AccountController < ApplicationController
       IdentityService.new.create_mambu_account(@account)
     end
 
+    # Let users select timings up till 10pm
     @timings = []
     time = Time.now.beginning_of_hour + 1.hour
     while time.strftime("%H").to_i != 22
@@ -59,7 +55,9 @@ class AccountController < ApplicationController
     @transaction_data = @transaction_data.append({x: @account.created_at, y: 0}).reverse
     @max_amount *= 1.1
 
-    @activities = @account.activities.order("timing ASC").select{|a| a if (a.timing > Time.now && a.status != "cancelled")}
+    @activities = @account.activities&.order("timing ASC").select{|a| a if (a.timing > Time.now && a.status != "cancelled")}
+
+    @friends = @account.friends
   end
 
   private

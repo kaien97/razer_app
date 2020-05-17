@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_165635) do
+ActiveRecord::Schema.define(version: 2020_05_17_004059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_165635) do
     t.string "hash_id"
     t.bigint "business_account_id"
     t.string "timings_available"
+    t.float "rating"
     t.index ["business_account_id"], name: "index_businesses_on_business_account_id"
   end
 
@@ -87,6 +88,13 @@ ActiveRecord::Schema.define(version: 2020_05_16_165635) do
     t.bigint "personal_accounts_id"
     t.index ["businesses_id"], name: "index_calendars_on_businesses_id"
     t.index ["personal_accounts_id"], name: "index_calendars_on_personal_accounts_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "account_1_id"
+    t.integer "account_2_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "identities", force: :cascade do |t|
@@ -119,6 +127,17 @@ ActiveRecord::Schema.define(version: 2020_05_16_165635) do
     t.index ["lender_hash_id"], name: "index_loans_on_lender_hash_id"
     t.index ["loaner_hash_id", "lender_hash_id"], name: "index_loans_on_loaner_hash_id_and_lender_hash_id", unique: true
     t.index ["loaner_hash_id"], name: "index_loans_on_loaner_hash_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "message"
+    t.string "notif_type"
+    t.boolean "resolved", default: false
+    t.jsonb "data"
+    t.bigint "personal_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["personal_account_id"], name: "index_notifications_on_personal_account_id"
   end
 
   create_table "personal_accounts", force: :cascade do |t|
@@ -166,5 +185,6 @@ ActiveRecord::Schema.define(version: 2020_05_16_165635) do
   add_foreign_key "calendars", "businesses", column: "businesses_id", on_delete: :cascade
   add_foreign_key "calendars", "personal_accounts", column: "personal_accounts_id", on_delete: :cascade
   add_foreign_key "identities", "personal_accounts", on_delete: :cascade
+  add_foreign_key "notifications", "personal_accounts", on_delete: :cascade
   add_foreign_key "personal_accounts", "users", on_delete: :cascade
 end

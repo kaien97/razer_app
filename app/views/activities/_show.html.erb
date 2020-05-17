@@ -13,11 +13,15 @@
                   <%= "#{@activity.timing.strftime('%-d %b, %-l%P')} - #{@activity.n_pax} pax" %>
                 </div>
                 <div class="col-md-6">
-                  <%= button_to "Cancel Booking", activity_path(@activity.hash_id), class: "btn-danger large pull-right", method: :patch, params: {status: "cancel"} %>
+                  <% if !(@activity.status == "cancelled") %>
+                    <%= button_to "Cancel Booking", activity_path(@activity.hash_id), class: "btn-danger large pull-right", method: :patch, params: {status: "cancel"} %>
+                  <% end %>
                 </div>
               </div>
-              <%= button_to "Complete Payment", activity_path(@activity.hash_id), class: "btn-primary large pull-right", method: :patch, params: {status: "pay"} %>
-              <div class="clear-float"></div>
+              <% if (@activity.status == "confirmed") %>
+                <%= button_to "Complete Payment", activity_path(@activity.hash_id), class: "btn-primary large pull-right", method: :patch, params: {status: "pay"} %>
+                <div class="clear-float"></div>
+              <% end %>
             </div>
           </div>
         </div>

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style='z-index: 1000000'>
+    <div class="vertical-alignment-helper">
+      <div class="modal-dialog vertical-align-center" role="document">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Invite <%= @invitee.name %> to an Activity</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row padding-10">
+                <% @activities.each do |a| %>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <%= a.timing.strftime("%-l%P, %-d %b") %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= a.business.name %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= button_to "Invite", activity_jio_path(a.hash_id), class: "btn-primary pull-right", params: {f_id: @invitee.hash_id} %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

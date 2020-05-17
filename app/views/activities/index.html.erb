@@ -1,0 +1,37 @@
+<section class="content-header">
+  <h1> All Activities </h1>
+</section>
+
+<section class="content">
+  <% if @activities.empty? %>
+    <br><br>
+    <h2 class='text-center'> No activities found... Why not find something to do? </h2>
+    <br><br>
+    I want to...
+    <%= render "shared/search_bar" %>
+  <% end %>
+  <div class='center'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Activity</th>
+          <th>Cost</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @activities.each do |a| %>
+          <tr>
+            <td><%= a.timing.strftime("%D") %></td>
+            <td><%= a.timing.strftime("%r") %></td>
+            <td><%= link_to a.business.name, activity_path(a.hash_id), remote: true %></td>
+            <td><%= a.cost %></td>
+            <td><%= a.status.capitalize %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

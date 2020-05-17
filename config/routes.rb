@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   end
 
   resources :activities do
+    post 'jio'
+    collection do
+      get 'invite'
+    end
   end
 
 end

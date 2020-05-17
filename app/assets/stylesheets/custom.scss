@@ -3,6 +3,28 @@
                           FORMS
 ###############################################################################
 */
+.color-green {
+  color: $theme-green !important;
+}
+
+th {
+  color: $theme-green !important;
+}
+
+#welcome-text {
+  color: $theme-green;
+}
+
+.signed-out-container {
+  width: 80%;
+}
+
+.jumbotron {
+  width: 80%;
+  height: 60vh;
+  padding: 40px;
+  background-color: $theme-dark-blue;
+}
 
 .form-control {
   background-color: $theme-grey !important;
@@ -19,6 +41,10 @@
 
 a {
   color: $theme-cyan !important;
+}
+
+body {
+  background-color: $background-color !important;
 }
 
 .sidebar-menu > li {
@@ -46,5 +72,9 @@ a {
 }
 
 .modal-content {
+  background-color: $theme-dark-blue !important;
+}
+
+.dropdown-menu {
   background-color: $theme-dark-blue !important;
 }

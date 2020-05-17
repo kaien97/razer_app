@@ -39,7 +39,7 @@
       <div class="col-md-4">
         <div class="box">
           <div class="box-header ">
-            <h3 class="box-title">Upcoming Activities</h3>
+            <h3 class="box-title">Upcoming Activity</h3>
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
               </button>
@@ -56,7 +56,7 @@
                 <p class="large-text box-text">
                   <strong><%= @activities.first.timing.strftime("%-l %p") %></strong>
                 </p>
-                <p class="medium-text box-text center-text">
+                <p class="medium-text color-green box-text center-text">
                   <%= @activities.first.business.name %>
                 </p>
                 <%= button_to "See Details", activity_path(@activities.first.hash_id), class: "btn-primary large pull-right", method: :get, remote: true %>
@@ -65,16 +65,22 @@
           </div>
         </div>
       </div>
+    <% else %>
+      <%= render "search_bar_card" %>
     <% end %>
   </div>
 
-
-  <!-- SEARCH BAR -->
   <div class="row">
+  <!-- SEARCH BAR -->
+    <% if !@activities.blank? %>
+      <%= render "search_bar_card" %>
+    <% end %>
+
+    <!-- FRIEND LIST -->
     <div class="col-md-4">
       <div class="box">
         <div class="box-header ">
-          <h3 class="box-title">I want to...</h3>
+          <h3 class="box-title">Friends</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -83,11 +89,16 @@
         </div>
 
         <div class="box-body" style="">
-          <div class="row">
-            <div class="col-md-12">
-              <%= render "shared/search_bar" %>
+          <% @friends.each do |f| %>
+            <div class="row">
+              <div class="col-md-8">
+                <p class="medium-text box-text"><%= f.name %></p>
+              </div>
+              <div class="col-md-4">
+                <%= button_to "Invite", invite_activities_path, class: "btn-primary pull-right", method: :get, remote: true, params: {f_id: f.hash_id} %>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>

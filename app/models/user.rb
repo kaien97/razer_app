@@ -10,7 +10,11 @@ class User < ApplicationRecord
   after_create :initialize_account
 
   def initialize_account
-    account = self.create_account!
+    account = self.create_personal_account!
     account.create_identity!
+  end
+
+  def account
+    return self.personal_account
   end
 end
