@@ -55,7 +55,7 @@ gem 'bootstrap-will_paginate', '~> 1.0.0'
 gem 'will_paginate', '~> 3.1.8'
 
 # For fun http requests
-gem 'httparty', '~> 0.17.1'
+gem 'httparty', '~> 0.21.0'
 
 # Token Based Authentication
 gem 'jwt', '~> 2.2.1'
